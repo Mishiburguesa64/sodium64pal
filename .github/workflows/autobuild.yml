@@ -3,7 +3,7 @@ name: Automatic Builds
 on:
   push:
     branches:
-    - master
+    - pal
 
 jobs:
   build:
@@ -46,14 +46,14 @@ jobs:
       uses: actions/download-artifact@v4
     - name: Package artifacts
       run: |
-        mv sodium64/sodium64.z64 .
-        mv sodium64/rom-converter.py .
+        mv sodium64pal/sodium64.z64 .
+        mv sodium64pal/rom-converter.py .
         zip -r sodium64.zip sodium64.z64 rom-converter.py
     - name: Create new release
       uses: ncipollo/release-action@v1
       with:
         name: Rolling Release
         body: These are automatically updated builds of the latest commit.
-        artifacts: sodium64.zip
+        artifacts: sodium64pal.zip
         tag: release
         token: ${{ secrets.GITHUB_TOKEN }}

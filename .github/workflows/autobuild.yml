@@ -49,7 +49,7 @@ jobs:
       run: |
         mv sodium64pal/sodium64.z64 .
         mv sodium64pal/rom-converter.py .
-        zip -r sodium64.zip sodium64.z64 rom-converter.py
+        zip -r sodium64pal.zip sodium64.z64 rom-converter.py
     - name: Create new release
       uses: ncipollo/release-action@v1
       with:

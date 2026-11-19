@@ -1,6 +1,9 @@
 # sodium64
 A SNES emulator for the N64, written in assembly.
 
+**This fork:** `Mishiburguesa64/sodium64pal` Based on the latest build released on 11/07/2025 an experimental version
+designed to allow the emulator to run SNES PAL games on a PAL region N64 console.
+
 ### Overview
 The goal of sodium64 is to be fast and accurate enough to at least make some SNES games playable on the N64. It handles
 rendering entirely on the RSP in order to reduce load on the main CPU. I thought it would be fun to write something
@@ -8,7 +11,10 @@ specifically for older hardware in assembly, so sodium64 was born!
 
 ### Downloads
 The latest build of sodium64 is automatically provided via GitHub Actions, and can be downloaded from the
-[releases page](https://github.com/Hydr8gon/sodium64/releases).
+[releases page](https://github.com/Mishiburguesa64/sodium64pal/releases) (not available yet).
+But your N64 console is NTSC and can be downloaded from the original author
+[releases page](https://github.com/Hydr8gon/sodium64/releases) 
+
 
 ### Usage
 Place SNES ROMs with extension `.sfc`/`.smc` in the same folder as `sodium64.z64` and `rom-converter.py`. Run

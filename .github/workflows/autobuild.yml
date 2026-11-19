@@ -3,6 +3,7 @@ name: Automatic Builds
 on:
   push:
     branches:
+    - master
     - pal
 
 jobs:

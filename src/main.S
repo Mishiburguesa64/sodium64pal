@@ -77,25 +77,25 @@ clear_vram:
     sw t1, 0x0004(t0) // VI_ORIGIN
     li t1, 0x00000118 // Framebuffer width
     sw t1, 0x0008(t0) // VI_WIDTH
-    li t1, 0x00000200 // Line to trigger interrupt
+    li t1, 0x0000023E // Line to trigger interrupt
     sw t1, 0x000C(t0) // VI_V_INTR
     li t1, 0x00000000 // Clear interrupt
     sw t1, 0x0010(t0) // VI_V_CURRENT
-    li t1, 0x03E52239 // Various timing parameters
+    li t1, 0x0404233A // Various timing parameters
     sw t1, 0x0014(t0) // VI_BURST
-    li t1, 0x0000020D // Lines per frame (NTSC standard)
+    li t1, 0x00000271 // Lines per frame (PAL)
     sw t1, 0x0018(t0) // VI_V_SYNC
-    li t1, 0x00000C15 // Quarter-pixels per line
+    li t1, 0x00170C69 // Quarter-pixels per line
     sw t1, 0x001C(t0) // VI_H_SYNC
-    li t1, 0x0C150C15 // Same as above
+    li t1, 0x0C6F0C6E // Same as above
     sw t1, 0x0020(t0) // VI_H_SYNC_LEAP
-    li t1, 0x006C02EC // Active horizontal pixel range
+    li t1, 0x006E02FA // Active horizontal pixel range
     sw t1, 0x0024(t0) // VI_H_VIDEO
-    li t1, 0x002501FF // Active vertical pixel range
+    li t1, 0x00590230 // Active vertical pixel range
     sw t1, 0x0028(t0) // VI_V_VIDEO
-    li t1, 0x000E0204 // Vertical color burst range
+    li t1, 0x0009026B // Vertical color burst range
     sw t1, 0x002C(t0) // VI_V_BURST
-    li t1, 0x000001C0 // Horizontal scale (10-bit fraction, 280/640)
+    li t1, 0x000001B8 // Horizontal scale (10-bit fraction, 280/640)
     sw t1, 0x0030(t0) // VI_X_SCALE
     li t1, 0x00000400 // Vertical scale (10-bit fraction, 240/240)
     sw t1, 0x0034(t0) // VI_Y_SCALE
@@ -104,7 +104,7 @@ clear_vram:
     lui t0, 0xA450 // AI register upper address
     li t1, 0x00000001 // DMA enable
     sw t1, 0x0008(t0) // AI_CONTROL
-    li t1, 48681812 / (60 * 262 * 341 * 4 / DSP_SAMPLE) + 1
+    li t1, 49656530 / (50 * 312 * 341 * 4 / DSP_SAMPLE) + 1 //new
     sw t1, 0x0010(t0) // AI_DAC_RATE
     li t1, 0x0000000F // 16-bit - 1
     sw t1, 0x0014(t0) // AI_BIT_RATE
@@ -225,12 +225,12 @@ vi_interrupt:
     lui k0, 0xA440
     sw zero, 0x0010(k0) // VI_CURRENT
 
-    // Wait one second by counting 60 frames at 60Hz
+    // Wait one second by counting 50 frames at 50Hz
     la k0, fps_native
     lbu k1, (k0)
-    addi k1, k1, -59
+    addi k1, k1, -49	// new
     beqz k1, update_fps
-    addi k1, k1, 60
+    addi k1, k1, 50 // new
     b check_frame
     sb k1, (k0)
 

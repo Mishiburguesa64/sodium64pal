@@ -131,7 +131,7 @@ coldata: .hword 0
 vmadd: .hword 0
 cgadd: .hword 0
 vtime: .hword 0
-stat78: .byte 0x1
+stat78: .byte 0x11
 nmitimen: .byte 0
 rdnmi: .byte 0
 timeup: .byte 0
@@ -201,7 +201,7 @@ ppu_event:
     beq s0, t0, vblank_start
     addi t1, t0, -1
     beq s0, t1, pre_vblank
-    li t0, 262
+    li t0, 312
     beq s0, t0, vblank_end
     nop
 
